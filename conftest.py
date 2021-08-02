@@ -9,8 +9,9 @@ sys.path.append(os.path.normpath(os.path.join(
     os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__)))), '..')))
 
 from pages.login_page import LogingPage
-from pages.locators import ProductsPageLocators, HomePageLocators
+from pages.locators import ProductsPageLocators, HomePageLocators, CustomersPageLocators, RegisterationUserLocators
 from pages.product_page import ProductPage
+from pages.customer_page import CustomersPage
 
 logging.basicConfig(level=logging.INFO, filename='../logs/log.log', format='%(levelname)s %(asctime)s %(message)s')
 
@@ -118,9 +119,9 @@ def url(request):
 
 
 @pytest.fixture(scope='function')
-def admin(browser, request):
+def admin(browser, request, url):
     client = LogingPage(browser)
-    client.admin_authorization()
+    client.admin_authorization(url)
 
     request.addfinalizer(client.logout)
 
@@ -133,3 +134,28 @@ def add_product(browser, admin):
     client = ProductPage(browser)
     client.add_product(name=ProductsPageLocators.PRODUCT, meta='test', model='test')
     client.check_the_product_on_the_list(name=ProductsPageLocators.PRODUCT)
+
+
+@pytest.fixture(scope='function')
+def remove_product(browser, request, admin):
+    client = ProductPage(browser)
+
+    def fin():
+        client.remove_products(name=ProductsPageLocators.PRODUCT)
+
+    request.addfinalizer(fin)
+
+@pytest.fixture(scope='function')
+def remove_user(browser, request, url):
+
+    def fin():
+        client = LogingPage(browser)
+        client.admin_authorization(url)
+        client = CustomersPage(browser)
+        client.click_to_element(*CustomersPageLocators.MENU)
+        client.click_to_element(*CustomersPageLocators.MENU_CUSTOMERS_CHECK)
+        client.remove_customer(name=RegisterationUserLocators.NAME)
+        client = LogingPage(browser)
+        client.logout()
+
+    request.addfinalizer(fin)

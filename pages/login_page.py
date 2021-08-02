@@ -5,9 +5,9 @@ import allure
 
 class LogingPage(BasePage):
     @allure.step('Авторизация администратора')
-    def admin_authorization(self):
+    def admin_authorization(self, url):
         self.logger.info('Авторизация администратора')
-        self.open(url=PagePaths.LOGIN_ADMIN)
+        self.open(url=PagePaths.LOGIN_ADMIN.format(url))
         self.check_form()
         self.enter_text(*LoginAdminPageLocators.LOGIN_ADMIN, text=LoginAdminPageLocators.TEXT_LOGIN)
         self.enter_text(*LoginAdminPageLocators.PASSWORD_ADMIN, text=LoginAdminPageLocators.TEXT_PASSWORD)

@@ -2,13 +2,10 @@ from selenium.webdriver.common.by import By
 
 
 class PagePaths:
-    HOST_GLOBAL = 'https://demo.opencart.com/'
-    HOST_LOCAL = 'http://192.168.31.162/'
-    MAIN = HOST_GLOBAL
-    PRODUCT = f'{MAIN}index.php?route=product/product&path=57&product_id=49'
-    CATALOG = f'{MAIN}index.php?route=product/category&path=20'
-    LOGIN = f'{MAIN}index.php?route=account/login'
-    LOGIN_ADMIN = f'{MAIN}admin/'
+    PRODUCT = '{}index.php?route=product/product&path=57&product_id=49'
+    CATALOG = '{}index.php?route=product/category&path=20'
+    LOGIN = '{}index.php?route=account/login'
+    LOGIN_ADMIN = '{}admin/'
 
 
 class HomePageLocators:
@@ -75,7 +72,7 @@ class LoginAdminPageLocators:
     NAME_FORM = (By.CSS_SELECTOR, '.panel-heading')
 
 
-class RegisterationUserPage:
+class RegisterationUserLocators:
     NAME = 'autotest_user'
     PASS = 'autotest1234'
     FIRST_NAME = (By.ID, 'input-firstname')
@@ -87,3 +84,11 @@ class RegisterationUserPage:
     PRIVACY = (By.XPATH, '//input[@type="checkbox" and @name="agree"]')
     CONTINUE_BUTTON = (By.CSS_SELECTOR, '.btn.btn-primary')
     SUCCESS_MESSAGE = (By.CSS_SELECTOR, '#content h1', 'Your Account Has Been Created!')
+
+
+class CustomersPageLocators:
+    MENU = (By.ID, 'menu-customer')
+    MENU_CUSTOMERS_CHECK = (By.CSS_SELECTOR, '#collapse5 li:nth-child(1)')
+    CHECKBOX_PRODUCT = '//td[contains(text(),"{}")]/preceding::td[1]'
+    DEL_BUTTON = (By.CSS_SELECTOR, '.btn.btn-danger')
+    SUCCESS_MESSAGE = '.alert.alert-success.alert-dismissible'

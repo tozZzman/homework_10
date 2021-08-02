@@ -5,7 +5,7 @@ import allure
 
 
 @allure.title('Добавление нового продукта под админом')
-def test_adding_a_product_under_admin(browser, admin):
+def test_adding_a_product_under_admin(browser, remove_product):
     client = LogingPage(browser)
     client.click_to_element(*HomePageLocators.CATALOG)
     client.click_to_element(*HomePageLocators.PRODUCTS)

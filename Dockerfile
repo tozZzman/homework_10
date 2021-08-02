@@ -2,10 +2,10 @@ FROM ubuntu:20.04
 
 # переменные окружения через которые можно передать ключи для запуска тестов
 ENV BROWSER='chrome'
-ENV URL='https://demo.opencart.com/'
+ENV URL='http://192.168.31.145:8087/'
 ENV EXECUTOR='192.168.31.145'
 ENV BROWSER_VER='92'
-ENV VNC='--vnc'
+ENV VNC=''
 ENV VIDEO=''
 # переменная для выбора тестов, которые следует запустить (например: -e "TEST=-k test_currency")
 ENV TEST=''
@@ -35,3 +35,4 @@ WORKDIR /tests_opencart/tests
 
 # запуск тестов в зависимости от установок в переменных окружения
 CMD pytest -v --tb=short --url=${URL} --browser=${BROWSER} --bversion=${BROWSER_VER} --executor=${EXECUTOR} ${VNC} ${VIDEO} ${TEST}
+    # pytest --collect-only -q

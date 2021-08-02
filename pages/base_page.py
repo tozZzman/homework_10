@@ -26,7 +26,7 @@ class BasePage:
             raise TimeoutError("Не дождались заголовка страницы")
 
     @allure.step('Ожидание отображения элемента "{what}" с таймаутом {timeout} сек.')
-    def waiting_for_element_present(self, how, what, timeout=2):
+    def waiting_for_element_present(self, how, what, timeout=5):
         self.logger.info(f'Ожидание отображения эелемента "{what}" с таймаутом {timeout} сек.')
         try:
             wait = WebDriverWait(driver=self.browser, timeout=timeout)
@@ -35,7 +35,7 @@ class BasePage:
             raise TimeoutError(f"Элемент не был найден в течение {timeout} секунд(-ы)")
 
     @allure.step('Ожидание скрытия текста "{text}" с таймаутом {timeout} сек.')
-    def waiting_for_text_not_present(self, how, what, text, timeout=2):
+    def waiting_for_text_not_present(self, how, what, text, timeout=5):
         self.logger.info(f'Ожидание скрытия текста "{text}" с таймаутом "{timeout}"')
         try:
             wait = WebDriverWait(driver=self.browser, timeout=timeout)
@@ -44,7 +44,7 @@ class BasePage:
             raise TimeoutError(f"Текст отображался в течение {timeout} секунд(-ы)")
 
     @allure.step('Ожидание кликабельности элемента "{what}" с таймаутом {timeout} сек.')
-    def waiting_for_element_to_be_clickable(self, how, what, timeout=2):
+    def waiting_for_element_to_be_clickable(self, how, what, timeout=5):
         self.logger.info(f'Ожидание кликабельности элемента "{what}" с таймаутом "{timeout}"')
         try:
             wait = WebDriverWait(driver=self.browser, timeout=timeout)
@@ -53,7 +53,7 @@ class BasePage:
             raise TimeoutError(f"Элемент был не кликабелен в течение {timeout} секунд(-ы)")
 
     @allure.step('Ожидание отображения текста "{text}" с таймаутом {timeout} сек.')
-    def waiting_for_text_present(self, how, what, text, timeout=2):
+    def waiting_for_text_present(self, how, what, text, timeout=5):
         self.logger.info(f'Ожидание отображения текста "{text}" с таймаутом "{timeout}"')
         try:
             wait = WebDriverWait(driver=self.browser, timeout=timeout)

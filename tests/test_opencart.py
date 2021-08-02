@@ -11,9 +11,9 @@ def test_search_title(browser, url):
 
 
 @allure.title('Проверка наличия элементов на главной странице')
-def test_search_items_on_the_home_page(browser):
+def test_search_items_on_the_home_page(browser, url):
     bp = BasePage(browser)
-    bp.open(lc.PagePaths.MAIN)
+    bp.open(url)
     bp.waiting_for_element_present(*lc.HomePageLocators.ADD_TO_BASKET)
     bp.waiting_for_element_present(*lc.HomePageLocators.ADD_TO_WISHLIST)
     bp.waiting_for_element_present(*lc.HomePageLocators.COMPARE)
@@ -24,7 +24,7 @@ def test_search_items_on_the_home_page(browser):
 @allure.title('Проверка наличия элементов на странице продуктов')
 def test_search_items_on_the_product_page(browser, url):
     bp = BasePage(browser)
-    bp.open(lc.PagePaths.PRODUCT)
+    bp.open(lc.PagePaths.PRODUCT.format(url))
     bp.waiting_for_element_present(*lc.ProductPageLocators.INPUT_QUALITY)
     bp.waiting_for_element_present(*lc.ProductPageLocators.ADD_TO_CART)
     bp.waiting_for_element_present(*lc.ProductPageLocators.BACK_TO_HOME)
@@ -35,7 +35,7 @@ def test_search_items_on_the_product_page(browser, url):
 @allure.title('Проверка наличия элементов на странице каталога')
 def test_search_items_on_the_catalog_page(browser, url):
     bp = BasePage(browser)
-    bp.open(lc.PagePaths.CATALOG)
+    bp.open(lc.PagePaths.CATALOG.format(url))
     bp.waiting_for_element_present(*lc.CatalogPageLocators.LIST_VIEW)
     bp.waiting_for_element_present(*lc.CatalogPageLocators.GRID_VIEW)
     bp.waiting_for_element_present(*lc.CatalogPageLocators.COMPARE_TOTAL)
@@ -46,7 +46,7 @@ def test_search_items_on_the_catalog_page(browser, url):
 @allure.title('Проверка наличия элементов на странице авторизации')
 def test_search_items_on_the_login_page(browser, url):
     bp = BasePage(browser)
-    bp.open(lc.PagePaths.LOGIN)
+    bp.open(lc.PagePaths.LOGIN.format(url))
     bp.waiting_for_element_present(*lc.LoginPageLocators.BUTTON_LOGIN)
     bp.waiting_for_element_present(*lc.LoginPageLocators.BUTTON_CONTINIUE)
     bp.waiting_for_element_present(*lc.LoginPageLocators.EMAIL)
@@ -57,7 +57,7 @@ def test_search_items_on_the_login_page(browser, url):
 @allure.title('Проверка наличия элементов на странице администратора')
 def test_search_items_on_the_login_admin_page(browser, url):
     bp = BasePage(browser)
-    bp.open(lc.PagePaths.LOGIN_ADMIN)
+    bp.open(lc.PagePaths.LOGIN_ADMIN.format(url))
     bp.waiting_for_element_present(*lc.LoginAdminPageLocators.LOGIN_ADMIN)
     bp.waiting_for_element_present(*lc.LoginAdminPageLocators.PASSWORD_ADMIN)
     bp.waiting_for_element_present(*lc.LoginAdminPageLocators.FORGOTTEN_PASSWORD)
