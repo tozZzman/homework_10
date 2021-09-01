@@ -40,7 +40,7 @@ def test_search_items_on_the_catalog_page(browser, url):
     bp.waiting_for_element_present(*lc.CatalogPageLocators.GRID_VIEW)
     bp.waiting_for_element_present(*lc.CatalogPageLocators.COMPARE_TOTAL)
     bp.waiting_for_text_present(*lc.CatalogPageLocators.SORT_BY, text='Default')
-    bp.waiting_for_text_present(*lc.CatalogPageLocators.SHOW, text='15')
+    bp.waiting_for_text_present(*lc.CatalogPageLocators.SHOW, text='20')
 
 
 @allure.title('Проверка наличия элементов на странице авторизации')
